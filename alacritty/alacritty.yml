@@ -1,38 +1,38 @@
 window:
   opacity: 0.95
 
-# Colors (Palenight)
+# Colors (Cobalt 2)
 colors:
-  # Default colors
-  primary:
-    background: '#292d3e'
-    foreground: '#959dcb'
-    bright_foreground: '#d0d0d0'
-
   cursor:
-    text: '#292d3e'
-    cursor: '#959dcb'
+    text: '#fefff2'
+    cursor: '#f0cc09'
 
-  # Normal colors
+  selection:
+    text: '#b5b5b5'
+    background: '#18354f'
+
+  primary:
+    background: '#132738'
+    foreground: '#ffffff'
+
   normal:
-    black:   '#292d3e'
-    red:     '#f07178'
-    green:   '#c3e88d'
-    yellow:  '#ffcb6b'
-    blue:    '#0066cc'
-    magenta: '#663399'
-    cyan:    '#89ddff'
-    white:   '#d0d0d0'
+    black:   '#000000'
+    red:     '#ff0000'
+    green:   '#38de21'
+    yellow:  '#ffe50a'
+    blue:    '#1460d2'
+    magenta: '#ff005d'
+    cyan:    '#00bbbb'
+    white:   '#bbbbbb'
 
-  # Bright colors
   bright:
-    black:   '#434758'
-    red:     '#ff8b92'
-    green:   '#ddffa7'
-    yellow:  '#ffe585'
-    blue:    '#66cccc'
-    magenta: '#993399'
-    cyan:    '#a3f7ff'
+    black:   '#555555'
+    red:     '#f40e17'
+    green:   '#3bd01d'
+    yellow:  '#edc809'
+    blue:    '#5555ff'
+    magenta: '#ff55ff'
+    cyan:    '#6ae3fa'
     white:   '#ffffff'
 
 shell:
