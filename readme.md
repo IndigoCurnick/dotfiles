@@ -1,0 +1,1 @@
+(Wallpaper)[https://wallhaven.cc/w/r2okx1]
