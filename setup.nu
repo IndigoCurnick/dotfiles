@@ -10,7 +10,7 @@ makepkg -si
 
 # Setting up basic desktop env
 cd ..
-sudo pacman -S xorg xorg-xinit firefox awesome lightdm vim alacritty -y
+sudo pacman -S xorg xorg-xinit firefox awesome lightdm vim alacritty dmenu
 
 cp /etc/X11/xinit/xinitrc .xinitrc
 
@@ -59,6 +59,6 @@ sed -i '${line_number}s/.*/terminal = "alacritty"/' ~/.config/awesome/rc.lua
 
 # Audio
 
-sudo pacman -S volumeicon 
+sudo pacman -S awesome-pulseaudio-widgets 
 
 # Theming awesome
