@@ -19,8 +19,8 @@ colors:
     red:     '#f07178'
     green:   '#c3e88d'
     yellow:  '#ffcb6b'
-    blue:    '#82aaff'
-    magenta: '#c792ea'
+    blue:    '#0066cc'
+    magenta: '#663399'
     cyan:    '#89ddff'
     white:   '#d0d0d0'
 
@@ -30,8 +30,8 @@ colors:
     red:     '#ff8b92'
     green:   '#ddffa7'
     yellow:  '#ffe585'
-    blue:    '#9cc4ff'
-    magenta: '#e1acff'
+    blue:    '#66cccc'
+    magenta: '#993399'
     cyan:    '#a3f7ff'
     white:   '#ffffff'
 
