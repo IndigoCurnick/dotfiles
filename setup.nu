@@ -59,6 +59,6 @@ sed -i '${line_number}s/.*/terminal = "alacritty"/' ~/.config/awesome/rc.lua
 
 # Audio
 
-sudo pacman -S awesome-pulseaudio-widgets 
+sudo pacman -S volumeicon 
 
 # Theming awesome
