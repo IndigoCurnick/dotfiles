@@ -18,6 +18,15 @@ echo "exec awesome" | save -a .xinitrc
 
 sudo pacman -S lightdm-gtk-greeter -y
 
-echo "greeter-session=lightdm-gtk-greeter" | save -a /etc/lightdm/lightdm.conf
+sudo -E nu -c 'echo "greeter-session=lightdm-gtk-greeter" | save -a /etc/lightdm/lightdm.conf'
 
 sudo systemctl enable lightdm -f
+
+# Compositor
+
+sudo pacman -S picom
+
+echo "picom &" | save -a .xinitrc
+
+# alacritty config 
+cp dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
