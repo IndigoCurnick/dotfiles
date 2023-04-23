@@ -34,3 +34,8 @@ colors:
     magenta: '#e1acff'
     cyan:    '#a3f7ff'
     white:   '#ffffff'
+
+shell:
+  program: /bin/nu
+  args:
+    - --login
