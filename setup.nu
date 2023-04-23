@@ -61,4 +61,10 @@ sed -i '${line_number}s/.*/terminal = "alacritty"/' ~/.config/awesome/rc.lua
 
 sudo pacman -S volumeicon 
 
+cd ~/.config/awesome
+git clone https://github.com/davlord/awesome-pulseaudio-widget.git
+
+cd ~
+
 # Theming awesome
+
