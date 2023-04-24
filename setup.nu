@@ -61,9 +61,9 @@ def wm [] {
     cd ..
     sudo pacman -S xorg xorg-xinit firefox awesome lightdm vim alacritty dmenu
 
-    cp /etc/X11/xinit/xinitrc .xinitrc
+    sudo cp /etc/X11/xinit/xinitrc .xinitrc
 
-    echo "exec awesome\n" | save -a .xinitrc
+    sudo -E nu -c 'echo "exec awesome\n" | save -a .xinitrc'
 
     sudo pacman -S lightdm-gtk-greeter
 
