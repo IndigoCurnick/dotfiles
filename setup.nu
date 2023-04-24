@@ -161,6 +161,7 @@ def core [] {
     install_yay $dev
     wm 
     utils
+    audio
     make_dirs
 
     if $dev { optional_development }
