@@ -58,7 +58,6 @@ def install_yay [keep: bool] {
 
 def wm [] {
     # Setting up basic desktop env
-    cd ..
     sudo pacman -S xorg xorg-xinit firefox awesome lightdm vim alacritty dmenu
 
     sudo cp /etc/X11/xinit/xinitrc .xinitrc
@@ -96,7 +95,6 @@ def audio [] {
 
     cd ~/.config/awesome
     git clone https://github.com/davlord/awesome-pulseaudio-widget.git
-
     cd ~
 
     sudo pacman -S pulseaudio pulseaudio-equalizer-ladspa
