@@ -87,7 +87,7 @@ def wm [] {
     cp dotfiles/wallpaper/wallpaper.png ~/Pictures/wallpapers/wallpaper.png
 
     # Awesome Theme
-    cp dotfiles/awesome ~/.config
+    cp -r dotfiles/awesome ~/.config
 }
 
 def audio [] {
