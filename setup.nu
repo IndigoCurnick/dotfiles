@@ -52,7 +52,7 @@ def install_yay [keep: bool] {
     makepkg -si
 
     if not keep {
-        sudo pacman -Rns base-devel git go
+        sudo pacman -Rns base-devel go
     }
 }
 
