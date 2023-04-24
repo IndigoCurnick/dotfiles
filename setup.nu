@@ -1,70 +1,194 @@
 #!/usr/bin/env nu
 
-# First basic setup
-sudo pacman -S base-devel git go -y
+def optional_development [] {
+    # VSCode
+    sudo pacman -S code 
+    yay -S code-marketplace
 
-# Building and installing yay
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
+    cat dotfiles/vscode/extensions.list | lines | each {|e| code --install-extension $e }
 
-# Setting up basic desktop env
-cd ..
-sudo pacman -S xorg xorg-xinit firefox awesome lightdm vim alacritty dmenu
+    # make/cmake
 
-cp /etc/X11/xinit/xinitrc .xinitrc
+    sudo pacman -S make cmake
 
-echo "exec awesome\n" | save -a .xinitrc
+    # Rust
+    sudo pacman -S rustup
 
-sudo pacman -S lightdm-gtk-greeter -y
+    # Go
+    sudo pacman -S go
 
-sudo -E nu -c 'echo "greeter-session=lightdm-gtk-greeter\n" | save -a /etc/lightdm/lightdm.conf'
+    # Python 
+    sudo pacman -S python pipenv
 
-sudo systemctl enable lightdm -f
+    # LaTeX 
+    sudo pacman -S texlive-most texlive-lang
+}
 
-# Compositor
+def optional_office [] {
+    # Libre office
+    sudo pacman -S libreoffice-fresh hunspell-en_gb
 
-sudo pacman -S picom
+    # eBooks
+    sudo pacman -S calibre foliate
 
-# echo "picom &\n" | save -a .xinitrc
+    # Image manipulation 
+    sudo pacman -S gimp
 
-echo "awful.spawn.with_shell('picom')\n" | save -a ~/.config/awesome/rc.lua
+    # Markdown editing
+    sudo pacman -S ghostwriter zettlr
+}
 
-# alacritty config 
-mkdir -p ~/.config/alacritty && cp dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+def optional_social [] {
+    sudo pacman -S discord telegram-desktop 
+}
 
-# Wallpaper 
+def install_yay [keep: bool] {
+    # First basic setup
+    sudo pacman -S base-devel git go 
 
-cp /etc/xdg/awesome/rc.lua ~/.config/awesome
+    # Building and installing yay
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
 
-sudo pacman -S feh
+    if !keep {
+        sudo pacman -Rns base-devel git go
+    }
+}
 
-mkdir ~/Pictures
-mkdir ~/Pictures/wallpapers
+def wm [] {
+    # Setting up basic desktop env
+    cd ..
+    sudo pacman -S xorg xorg-xinit firefox awesome lightdm vim alacritty dmenu
 
-cp dotfiles/wallpaper/wallpaper.png ~/Pictures/wallpapers/wallpaper.png
+    cp /etc/X11/xinit/xinitrc .xinitrc
 
-mkdir ~/.config/awesome
+    echo "exec awesome\n" | save -a .xinitrc
 
-echo "awful.spawn.with_shell('feh --bg-fill ~/Pictures/wallpapers/wallpaper.png')\n" | save -a ~/.config/awesome/rc.lua
+    sudo pacman -S lightdm-gtk-greeter
 
-# Fonts
-sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+    sudo -E nu -c 'echo "greeter-session=lightdm-gtk-greeter\n" | save -a /etc/lightdm/lightdm.conf'
 
-# Terminal default
-sed -i '/terminal = "xterm"/d' ~/.config/awesome/rc.lua
+    sudo systemctl enable lightdm -f
 
-line_number=$(grep -n 'terminal = "xterm"' ~/.config/awesome/rc.lua | cut -d: -f1)
-sed -i '${line_number}s/.*/terminal = "alacritty"/' ~/.config/awesome/rc.lua
+    # Compositor
 
-# Audio
+    sudo pacman -S picom
 
-sudo pacman -S volumeicon 
+    # alacritty config 
+    mkdir ~/.config/alacritty
+    cp dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 
-cd ~/.config/awesome
-git clone https://github.com/davlord/awesome-pulseaudio-widget.git
+    # Wallpaper 
 
-cd ~
+    sudo pacman -S feh
 
-# Theming awesome
+    mkdir ~/Pictures
+    mkdir ~/Pictures/wallpapers
+    cp dotfiles/wallpaper/wallpaper.png ~/Pictures/wallpapers/wallpaper.png
+
+    # Awesome Theme
+    cp dotfiles/awesome ~/.config
+}
+
+def audio [] {
+    sudo pacman -S volumeicon 
+
+    cd ~/.config/awesome
+    git clone https://github.com/davlord/awesome-pulseaudio-widget.git
+
+    cd ~
+
+    sudo pacman -S pulseaudio pulseaudio-equalizer-ladspa
+
+    sudo pacman -S clementine
+    cp dotfiles/Clementine/Clementine.conf ~/.config/Clementine/Clementine.conf
+}
+
+def utils [] {
+    sudo pacman -S gnome-disk-utility
+
+    sudo pacman -S lf thunar
+
+    sudo pacman -S ark
+
+    # Screenshots
+
+    sudo pacman -S spectacle
+
+    # Video player
+
+    sudo pacman -S vlc
+
+    # pdf viewer
+    sudo pacman -S evince
+
+    # Bat
+    sudo pacman -S bat
+}
+
+def make_dirs [] {
+    mkdir ~/Documents
+    mkdir ~/Downloads
+    # mkdir ~/Pictures
+    # Maybe I could do pictures here instead?
+    mkdir ~/Videos
+}
+
+def core [] {
+    print "Do you want optional development packages? y/n"
+    mut dev = (input)
+
+    if $dev == "y" { $dev = true } else if $dev == "n" { $dev = false } else { 
+        print "Unknown option"
+        exit
+    }
+
+    print "Do you want optional office packages? y/n"
+    mut off = (input)
+
+    if $off == "y" { $off = true } else if $off == "n" { $off = false } else { 
+        print "Unknown option"
+        exit
+    }
+
+    print "Do you want optional social packages? y/n"
+    mut soc = (input)
+
+    if $soc == "y" { $soc = true } else if $soc == "n" { $soc = false } else { 
+        print "Unknown option"
+        exit
+    }
+
+    install_yay $dev
+    wm 
+    utils
+    make_dirs
+
+    if $dev { optional_development }
+    if $off { optional_office }
+    if $soc { optional_social }
+}
+
+def welcome [] {
+    let welcome_text = (cat welcome.txt)
+    print $welcome_text 
+
+    print "Welcome to Crucible"
+    print "This script will guide you through installing Crucible"
+    print "It is mostly hands off, with some configuration"
+    print "You may be required to enter the root password"
+}
+
+def outro [] {
+    print "Congratulations! You are now using Crucible!"
+    print "If there were no hidden errors, you can now reboot and enjoy your new system (✿◠‿◠)"
+}
+
+welcome
+core
+outro
+
+
+
 
