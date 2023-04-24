@@ -51,7 +51,7 @@ def install_yay [keep: bool] {
     cd yay
     makepkg -si
 
-    if !keep {
+    if not keep {
         sudo pacman -Rns base-devel git go
     }
 }
@@ -143,7 +143,6 @@ def core [] {
         print "Unknown option"
         exit
     }
-    $dev = $dev | into bool
 
     print "Do you want optional office packages? y/n"
     mut off = (input)
@@ -152,7 +151,6 @@ def core [] {
         print "Unknown option"
         exit
     }
-    $off = $off | into bool
 
     print "Do you want optional social packages? y/n"
     mut soc = (input)
@@ -161,7 +159,6 @@ def core [] {
         print "Unknown option"
         exit
     }
-    $soc = $soc | into bool
 
     install_yay $dev
     wm 
