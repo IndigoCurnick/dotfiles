@@ -51,7 +51,7 @@ def install_yay [keep: bool] {
     cd yay
     makepkg -si
 
-    if not keep {
+    if not $keep {
         sudo pacman -Rns base-devel go
     }
 }
