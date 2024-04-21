@@ -87,6 +87,7 @@ audio() {
     sudo pacman -S pulseaudio pulseaudio-equalizer-ladspa --noconfirm 
 
     sudo pacman -S strawberry --noconfirm 
+    mkdir ~/.config/strawberry
     cp dotfiles/strawberry/strawberry.conf ~/.config/strawberry/strawberry.conf
 }
 
@@ -173,7 +174,6 @@ core() {
     mkdir ~/.config
     wm 
     utils
-    audio
     make_dirs
 
     # if [ $dev = true ]; then 
