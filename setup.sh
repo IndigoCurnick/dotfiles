@@ -17,7 +17,7 @@ optional_development() {
     yay -S rye-bin --noconfirm 
 
     # LaTeX 
-    sudo pacman -S texlive-most texlive-lang --noconfirm 
+    # sudo pacman -S texlive-most texlive-lang --noconfirm 
 
 }
 
@@ -91,7 +91,7 @@ audio() {
 }
 
 utils() {
-    sudo pacman -S zsh gnome-disk-utility lf dolphin ark --noconfirm 
+    sudo pacman -S zsh gnome-disk-utility lf dolphin ark vim --noconfirm 
 
     # Screenshots
 

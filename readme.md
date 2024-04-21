@@ -17,5 +17,5 @@ git clone https://github.com/IndigoCurnick/dotfiles.git
 Run the script 
 
 ```
-nu dotfiles/setup.nu
+sudo bash dotfiles/setup.sh
 ```
