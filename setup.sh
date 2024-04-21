@@ -134,58 +134,58 @@ outro() {
 
 core() {
     echo "Do you want optional development packages? y/n"
-    read in_dev
+    # read in_dev
 
-    if [ $in_dev = 'y' ]; then
-        dev=true
-    elif [ $in_dev = 'n' ]; then
-        dev=false
-    else 
-        echo "Unknown option"
-        exit 1
-    fi
+    # if [ $in_dev = 'y' ]; then
+    #     dev=true
+    # elif [ $in_dev = 'n' ]; then
+    #     dev=false
+    # else 
+    #     echo "Unknown option"
+    #     exit 1
+    # fi
 
     echo "Do you want optional office packages? y/n"
-    read in_off
+    # read in_off
 
-    if [ $in_off = 'y' ]; then
-        off=true
-    elif [ $in_off -eq "n" ]; then
-        off=false
-    else 
-        echo "Unknown option"
-        exit 1
-    fi
+    # if [ $in_off = 'y' ]; then
+    #     off=true
+    # elif [ $in_off = 'n' ]; then
+    #     off=false
+    # else 
+    #     echo "Unknown option"
+    #     exit 1
+    # fi
 
     echo "Do you want optional social packages? y/n"
-    read in_soc
+    # read in_soc
 
-    if [ $in_soc = 'y' ]; then
-        soc=true
-    elif [ $in_soc = 'y' ]; then
-        soc=false
-    else 
-        echo "Unknown option"
-        exit 1
-    fi
+    # if [ $in_soc = 'y' ]; then
+    #     soc=true
+    # elif [ $in_soc = 'y' ]; then
+    #     soc=false
+    # else 
+    #     echo "Unknown option"
+    #     exit 1
+    # fi
 
-    install_yay
+    # install_yay
     wm 
     utils
     audio
     make_dirs
 
-    if [ $dev = true ]; then 
-        optional_development
-    fi 
+    # if [ $dev = true ]; then 
+    #     optional_development
+    # fi 
 
-    if [ $off = true ]; then
-        optional_office
-    fi
+    # if [ $off = true ]; then
+    #     optional_office
+    # fi
 
-    if [ $soc = true ]; then
-        optional_social
-    fi
+    # if [ $soc = true ]; then
+    #     optional_social
+    # fi
 }
 
 
