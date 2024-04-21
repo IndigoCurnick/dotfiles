@@ -49,11 +49,11 @@ wm() {
 
     sudo cp /etc/X11/xinit/xinitrc .xinitrc
 
-    echo "exec awesome\n" > ".xinitrc"
+    sudo sh -c 'echo "exec awesome\n" >> ".xinitrc"'
 
     sudo pacman -S lightdm-gtk-greeter --noconfirm 
 
-    echo "greeter-session=lightdm-gtk-greeter\n" >> "/etc/lightdm/lightdm.conf"
+    sudo sh -c 'echo "greeter-session=lightdm-gtk-greeter\n" >> "/etc/lightdm/lightdm.conf"'
 
     sudo systemctl enable lightdm -f
 
