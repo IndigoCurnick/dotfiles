@@ -11,7 +11,7 @@ sudo pacman -S nushell git
 Then clone the repo 
 
 ```
-git clone https://github.com/NathanielCurnick/dotfiles.git
+git clone https://github.com/IndigoCurnick/dotfiles.git
 ```
 
 Run the script 
