@@ -170,6 +170,7 @@ core() {
     # fi
 
     # install_yay
+    mkdir ~/.config
     wm 
     utils
     audio
