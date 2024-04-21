@@ -36,6 +36,6 @@ colors:
     white:   '#ffffff'
 
 shell:
-  program: /bin/nu
+  program: /bin/zsh
   args:
     - --login
