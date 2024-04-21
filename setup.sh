@@ -86,8 +86,8 @@ audio() {
 
     sudo pacman -S pulseaudio pulseaudio-equalizer-ladspa --noconfirm 
 
-    sudo pacman -S clementine --noconfirm 
-    cp dotfiles/Clementine/Clementine.conf ~/.config/Clementine/Clementine.conf
+    sudo pacman -S strawberry --noconfirm 
+    cp dotfiles/strawberry/strawberry.conf ~/.config/strawberry/strawberry.conf
 }
 
 utils() {
