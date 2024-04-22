@@ -118,9 +118,13 @@ utils() {
 
 
     # zsh theme
-
+    touch .zshrc
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
     sudo sh -c 'echo "source ~/.powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc'
+
+
+    # Redshift
+    sudo pacman -S redshift
 }
 
 make_dirs() {
