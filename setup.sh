@@ -49,11 +49,11 @@ wm() {
 
     sudo cp /etc/X11/xinit/xinitrc .xinitrc
 
-    sudo sh -c 'echo "exec awesome\n" >> ".xinitrc"'
+    sudo sh -c 'echo "exec awesome" >> ".xinitrc"'
 
     sudo pacman -S lightdm-gtk-greeter --noconfirm 
 
-    sudo sh -c 'echo "greeter-session=lightdm-gtk-greeter\n" >> "/etc/lightdm/lightdm.conf"'
+    sudo sh -c 'echo "greeter-session=lightdm-gtk-greeter" >> "/etc/lightdm/lightdm.conf"'
 
     sudo systemctl enable lightdm -f
 
@@ -63,18 +63,20 @@ wm() {
 
     # alacritty config 
     mkdir ~/.config/alacritty
-    cp dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+    cp dotfiles/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
 
     # Wallpaper 
 
     sudo pacman -S feh --noconfirm 
 
-    mkdir ~/Pictures
-    mkdir ~/Pictures/wallpapers
+    mkdir ~/Pictures/wallpapers -p
     cp dotfiles/wallpaper/wallpaper.png ~/Pictures/wallpapers/wallpaper.png
 
     # Awesome Theme
     cp -r dotfiles/awesome ~/.config
+
+    # wifi
+    git clone git@github.com:pltanton/net_widgets.git ~/.config/awesome/net_widgets
 }
 
 audio() {
@@ -92,7 +94,7 @@ audio() {
 }
 
 utils() {
-    sudo pacman -S zsh gnome-disk-utility lf dolphin ark vim --noconfirm 
+    sudo pacman -S zsh gnome-disk-utility lf thunar ark vim xfce4-settings --noconfirm 
 
     # Screenshots
 
@@ -107,6 +109,18 @@ utils() {
 
     # Bat
     sudo pacman -S bat --noconfirm 
+
+    # Bluetooth
+
+    sudo pacman -S bluez bluez-utils  --noconfirm
+    sudo usermod -aG lp $USER
+    newgrp lp
+
+
+    # zsh theme
+
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+    sudo sh -c 'echo "source ~/.powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc'
 }
 
 make_dirs() {
@@ -118,7 +132,7 @@ make_dirs() {
 }
 
 welcome() {
-    cat welcome.txt
+    cat dotfiles/welcome.txt
 
     echo "Welcome to Crucible!"
     echo "This script will guide you through installing Crucible"

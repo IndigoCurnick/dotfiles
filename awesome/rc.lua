@@ -15,6 +15,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local audio_widget = require("awesome-pulseaudio-widget")
+local net_widgets = require("net_widgets")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -211,6 +212,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            net_widgets.wireless({interface="wlp1s0"}),
             audio_widget(),
             mykeyboardlayout,
             wibox.widget.systray(),
